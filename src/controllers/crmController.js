@@ -13,12 +13,11 @@ export const addNewContact = async (req, res) => {
     }
   };
 
-  export const getContacts = (req,res) => {
-    Contact.find()
-    .then((find)=>{
+  export const getContacts = (req, res) => {
+    Contact.find({}, (err, contact) => {
+      if (err) {
+        res.send(err);
+      }
       res.json(contact);
-    })
-    .catch((err)=>{
-      res.send(err) 
-    })
+    });
   };
